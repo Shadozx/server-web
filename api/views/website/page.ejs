@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/page.css" />
+
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <title><%=title%></title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $('.toggle').on('click', function () {
+          if ($('.item').hasClass('active')) {
+            $('.item').removeClass('active')
+          } else {
+            $('.item').addClass('active')
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <nav>
+      <ul class="menu">
+        <li class="logo"><a href="/">Blablabla</a></li>
+        <li class="item"><a href="/">Home</a></li>
+        <li class="item"><a href="/catalog">Catalog</a></li>
+
+        <li class="item button"><a href="#">Log In</a></li>
+        <li class="item button secondary"><a href="#">Sign Up</a></li>
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="section">
+        <div class="section_book"><%=page.title%></div>
+        <%page.textPage.forEach(function(p) {%>
+        <p class="test"><%=p%></p>
+        <%})%>
+      </div>
+      <div class="links">
+        <% if(page.previously) {%>
+        <a href="<%=page.previously%>" class="reader-next__btn"> Back </a>
+        <%}%>
+        <a href="<%=page.book%>" class="reader-next__btn">To the book</a>
+        <% if(page.next) {%>
+        <a href="<%=page.next%>" class="reader-next__btn"> Next </a>
+        <%}%>
+      </div>
+    </div>
+  </body>
+</html>

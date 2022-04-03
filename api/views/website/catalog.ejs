@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalog</title>
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/catalog.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $('.toggle').on('click', function () {
+          if ($('.item').hasClass('active')) {
+            $('.item').removeClass('active')
+          } else {
+            $('.item').addClass('active')
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <nav>
+      <ul class="menu">
+        <li class="logo"><a href="/">Blablabla</a></li>
+        <li class="item"><a href="/">Home</a></li>
+        <li class="item"><a href="/catalog">Catalog</a></li>
+
+        <li class="item button"><a href="#">Log In</a></li>
+        <li class="item button secondary"><a href="#">Sign Up</a></li>
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+
+    <div class="page">
+      <div class="container">
+        <!-- Starting page_wrapper -->
+        <div class="page_wrapper">
+          <div class="books">
+            <% images.forEach(function(image) { %>
+            <div class="book">
+              <a
+                class="media-card"
+                href="<%=image.book.url%>"
+                style="background-image: url('<%=image.url%>')"
+              >
+                <div class="name-book">
+                  <h3><%=image.book.title%></h3>
+                </div>
+              </a>
+            </div>
+            <%})%>
+          </div>
+        </div>
+        <div class="book-seach">
+          <div class="seach-filter">
+            <p>Text</p>
+            <p>Text</p>
+            <p>Text</p>
+            <p>Text</p>
+          </div>
+          <p>grgtuhgtuhu</p>
+        </div>
+
+        <!-- Ending page_wrapper -->
+      </div>
+      <div class="footer">
+        <div class="content"><p>Roman's Corporation Inc.</p></div>
+      </div>
+    </div>
+  </body>
+</html>

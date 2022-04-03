@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=img.book.title%></title>
+    <link rel="stylesheet" href="/book.css" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $('.toggle').on('click', function () {
+          if ($('.item').hasClass('active')) {
+            $('.item').removeClass('active')
+          } else {
+            $('.item').addClass('active')
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <nav>
+      <ul class="menu">
+        <li class="logo"><a href="/">Blablabla</a></li>
+        <li class="item"><a href="/">Home</a></li>
+        <li class="item"><a href="/catalog">Catalog</a></li>
+        <!-- <li class="item"><a href="#">About</a></li>
+          <li class="item"><a href="#">Services</a></li> -->
+
+        <li class="item button"><a href="#">Log In</a></li>
+        <li class="item button secondary"><a href="#">Sign Up</a></li>
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+
+    <div class="page">
+      <div class="container">
+        <div class="media-sidebar">
+          <div class="picture">
+            <img src="<%=img.url%>" alt="Ну.... тут мала бути фотографія" />
+          </div>
+          <div class="media-sidebar_buttons">
+            <a href="<%=img.book.url+'/1'%>" class="button-start">Start</a>
+          </div>
+        </div>
+        <div class="media-header">
+          <div class="picture">
+            <img src="<%=img.url%>" alt="Ну.... тут мала бути фотографія" />
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-name"><%=img.book.title%></div>
+
+          <div class="tabs-paper">
+            <div class="book-tabs">
+              <ul class="tabs">
+                <li class="tab current">Information</li>
+                <li class="tab">Chapters</li>
+              </ul>
+            </div>
+            <div class="cards">
+              <div class="description current"><%=img.book.description%></div>
+              <div class="chapters">
+                <%pages.forEach(function(page, i) {%>
+                <div class="chapter">
+                  <a href="<%=page.url%>">Розділ <%=i + 1%>. <%=page.title%></a>
+                </div>
+
+                <%})%>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-botom-menu">
+          <div class="media-sidebar_buttons">
+            <a href="<%=img.book.url+'/1'%>" class="button-start">Start</a>
+          </div>
+        </div>
+      </div>
+      <!-- <footer>
+        <div class="corp">Roman's Corporation Inc.</div>
+      </footer> -->
+    </div>
+    <script>
+      function find(sel) {
+        return document.querySelector(sel)
+      }
+      function findAll(sel) {
+        return [].slice.call(document.querySelectorAll(sel))
+      }
+
+      var tabs = findAll('.tabs > *')
+      var cards = findAll('.cards > *')
+      tabs.forEach(function (el) {
+        el.onclick = function (e) {
+          findAll('.current').forEach(function (el) {
+            el.classList.remove('current')
+          })
+          el.classList.add('current')
+          var index = tabs.indexOf(el)
+          cards[index].classList.add('current')
+        }
+      })
+    </script>
+  </body>
+</html>

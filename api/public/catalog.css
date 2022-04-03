@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+*::-moz-selection {
+  background-color: rgb(48, 48, 48);
+}
+*::selection {
+  background-color: rgb(48, 48, 48);
+}
+body {
+  /* background-color: rgba(55, 65, 81, 1); */
+  background-color: rgb(26, 26, 26);
+  color: white;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.container {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 15px;
+}
+.page_wrapper {
+  float: left;
+  position: relative;
+
+  width: 830px;
+  padding: 10px 14px;
+}
+div.books {
+  margin: 10px -15px;
+  padding: 12px;
+
+  /* background-color: hsla(0, 1%, 54%, 0.25); */
+  background-color: hsl(0deg 1% 20% / 25%);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.seach-filter {
+  height: 100%;
+}
+.book-seach {
+  /* background: hsla(0, 1%, 54%, 0.25); */
+  background-color: hsl(0deg 1% 20% / 25%);
+  border-radius: 10px;
+  width: 320px;
+  float: right;
+  position: sticky;
+  top: 73px;
+  bottom: 14px;
+}
+
+.book {
+  width: 20%;
+  padding: 10px;
+}
+.media-card {
+  position: relative;
+  display: block;
+  padding-top: 125%;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+.name-book {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 2px 3px;
+  overflow: hidden;
+  text-shadow: 0 2px rgba(0, 0, 0, 0.7);
+  background-image: linear-gradient(
+    0deg,
+    rgba(13, 13, 13, 0.8),
+    rgba(13, 13, 13, 0.01)
+  ) !important;
+}
+.name-book h3 {
+  color: rgb(229, 224, 216) !important;
+  display: -webkit-box;
+  font-weight: 500;
+  font-size: 13px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+@media (max-width: 991px) {
+  .page_wrapper {
+    width: 100%;
+    float: none;
+  }
+
+  .book {
+    width: 25%;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0px;
+  }
+  .page_wrapper {
+    padding: 10px 0px;
+  }
+  div.books {
+    margin: 0px;
+    border-radius: 0px;
+  }
+  .book {
+    width: 33.333%;
+    padding: 2px;
+  }
+}
+
+@media (max-width: 468px) {
+  .book {
+    width: 33%;
+    padding: 2px;
+  }
+}
+
+@media (max-width: 374px) {
+  .book {
+    width: 50%;
+    
+    padding:4px;
+  }
+}

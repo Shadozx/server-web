@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create book</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Enter book's url</h1>
+    <form method="post">
+      <label for="bookUrl">Book's url:</label><br />
+      <input
+        type="url"
+        name="bookUrl"
+        placeholder="https://example.com"
+        pattern="http:\/\/loveread\.(me|ec)\/view_global\.php\?id=\d+"
+        required
+        id="bookUrl"
+      />
+      <input type="submit" value="Send" />
+    </form>
+  </body>
+</html>
