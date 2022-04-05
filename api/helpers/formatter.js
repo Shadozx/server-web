@@ -62,50 +62,66 @@ async function getFormatedPages(amount, url) {
   // [{}, {}, {}]
   const data = await Promise.all(urls)
   console.log(data.length)
+
+  // Виконується якщо масив спарсений сторінок не пустий
   if (data.length) {
+    // Перевірка чи не пусті сторінки
     data.forEach((val) => {
       if (val != null) console.log(val.size)
-      else console.log('Щось пішло не так...')
+      else {
+        console.log('Щось пішло не так...')
+        throw new Error('Спарсена сторінка пуста!')
+      }
     })
 
     let pages = []
 
     console.log('========================================')
 
-    data.forEach(function (val, i) {
-      console.log(val.keys())
-      if (!i) {
-        if (val.has('0')) {
-          val.delete('0')
-        }
+    for (let page of data) {
+      // '0' - продовження минулої сторінки
 
-        let currentPage = !pages.length ? 1 : pages.length
-        console.log('Current:', currentPage)
-        for (let key of val.keys()) {
-          console.log(key)
-          const page = { title: key, text: val.get(key), num: currentPage }
-          console.log(page)
-          pages.push(page)
+      // Виконується коли масив сторінок пустий а '0' єдине що є
+      if (!pages.length && page.has('0')) {
+        // Видаляється тому що це не потрібен текст
+        page.delete('0')
+      }
+
+      // Виконується коли в масиві сторінки вже є глави і текст до них але в нас зараз є '0'
+      if (pages.length && page.has('0')) {
+        // З'єднання з минулою сторінкою
+        pages[pages.length - 1].text = pages[pages.length - 1].text.concat(
+          page.get('0')
+        )
+        page.delete('0')
+      }
+
+      // Виконується коли назва глави не дорівнює '0'
+      if (!page.has('0')) {
+        let length = pages.length
+        let currentPage = !length ? 1 : length + 1
+
+        for (let chapter of Array.from(page.keys())) {
+          pages.push({
+            title: chapter,
+            text: page.get(chapter),
+            num: currentPage,
+          })
           currentPage++
-        }
-
-        // pages.push({title: })
-      } else {
-        if (val.has('0')) {
-          pages[pages.length - 1].text = pages[pages.length - 1].text.concat(
-            val.get('0')
-          )
-          val.delete('0')
-        }
-        let currentPage = pages[pages.length - 1].num
-
-        for (let key of val.keys()) {
-          currentPage++
-          pages.push({ title: key, text: val.get(key), num: currentPage })
         }
       }
-    })
-    // console.log(pages)
+      // Виконується якщо не вдалося спарсити сторінку
+      if (page == null) {
+        throw new Error('Текст сторінки пустий...')
+      }
+    }
+
+    /**
+     * title = '0'
+     * title != '0'
+     * title = null
+     */
+
     return pages
   } else {
     console.log('Не вийшло спарсити фотографії...')

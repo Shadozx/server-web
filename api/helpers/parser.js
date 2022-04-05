@@ -165,7 +165,7 @@ async function getInfo(url) {
       return null
     }
   } catch (e) {
-    console.log(e)
+    console.log(e.message)
   }
 }
 
